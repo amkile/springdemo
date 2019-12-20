@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /yang
+
+spring:
+  #环境名称
+  profiles: dev
+  datasource:
+    yang:
+      url: jdbc:mysql://127.0.0.1:3306/yang?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    aprfund:
+      url: jdbc:mysql://127.0.0.1:3306/aprfund?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      max-active: 100
+      min-idle: 5
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 1 form yang.f
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      connection-properties: 'druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000'
+      filters: stat,wall
+
+  http:
+    encoding:
+      charset: utf-8
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+#  type-aliases-package: com.yang.
+
+logging:
+  level:
+    com:
+      yang: debug
+
+
+yang:
+  name: y
+  password: A
+  driver: b
